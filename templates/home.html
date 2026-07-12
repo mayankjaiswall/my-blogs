@@ -67,7 +67,7 @@
               <h3>{{ post.title }}</h3>
               <small class="mb-1 text-muted">{{ post.created_at| timesince }} | {{ post.author }}</small>
               <p class="card-text">
-                {{ post.short_description }}
+                {{ post.short_description |truncatewords:25}}
               </p>
             </div>
           </div>
@@ -76,29 +76,23 @@
         {% endfor %}
       </div>
 
+      <h3 class="mb-4 font-italic" style="color: #333;">Recent Articles</h3>
       <main role="main" class="container p-0">
         <div class="row">
           <div class="col-md-8 blog-main">
-            <div class="blog-post">
-              <h2 class="blog-post-title">Sample blog post</h2>
-              <p class="blog-post-meta">
-                January 1, 2014 by <a href="#">Mark</a>
-              </p>
-
-              <p>
-                This blog post shows a few different types of content that's
-                supported and styled with Bootstrap. Basic typography, images,
-                and code are all supported.
-              </p>
-
-              <p>
-                Cum sociis natoque penatibus et magnis
-                <a href="#">dis parturient montes</a>, nascetur ridiculus mus.
-                Aenean eu leo quam. Pellentesque ornare sem lacinia quam
-                venenatis vestibulum. Sed posuere consectetur est at lobortis.
-                Cras mattis consectetur purus sit amet fermentum.
-              </p>
+            {% for post in posts %}
+            <div class="col-md-6">
+            <div class="card border-0">
+              <div class="card-body">
+                <h3>{{ post.title }}</h3>
+                <small class="mb-1 text-muted">{{ post.created_at| timesince }} | {{ post.author }}</small>
+                <p class="card-text">
+                  {{ post.short_description |truncatewords:10}}
+                </p>
+              </div>
             </div>
+            </div>
+            {% endfor %}
             <!-- /.blog-post -->
           </div>
           <!-- /.blog-main -->
