@@ -1,0 +1,500 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Page not found | My Blogs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,700;1,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #17211b;
+        --muted: #657069;
+        --paper: #f7f4ed;
+        --cream: #fffdf8;
+        --accent: #f2a93b;
+        --accent-dark: #d17e0e;
+        --green: #244f3a;
+        --line: rgba(23, 33, 27, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 9% 88%, rgba(242, 169, 59, 0.16), transparent 23rem),
+          radial-gradient(circle at 91% 8%, rgba(36, 79, 58, 0.12), transparent 25rem),
+          var(--paper);
+        font-family: "DM Sans", Arial, sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .error-page {
+        position: relative;
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .error-page::before,
+      .error-page::after {
+        position: absolute;
+        z-index: -1;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .error-page::before {
+        top: -11rem;
+        right: -8rem;
+        width: 29rem;
+        height: 29rem;
+      }
+
+      .error-page::after {
+        bottom: -13rem;
+        left: -10rem;
+        width: 32rem;
+        height: 32rem;
+      }
+
+      .site-header {
+        display: flex;
+        width: min(1160px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 28px 0 20px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--cream);
+        background: var(--green);
+        font-family: "DM Sans", Arial, sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: -0.08em;
+      }
+
+      .header-label {
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .error-shell {
+        display: grid;
+        width: min(1160px, calc(100% - 48px));
+        margin: auto;
+        padding: 72px 0 86px;
+        grid-template-columns: minmax(0, 1fr) minmax(330px, 0.88fr);
+        gap: clamp(48px, 8vw, 112px);
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: flex;
+        margin: 0 0 24px;
+        align-items: center;
+        gap: 12px;
+        color: var(--green);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 34px;
+        height: 2px;
+        background: var(--accent);
+        content: "";
+      }
+
+      h1 {
+        max-width: 660px;
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(3.4rem, 7.2vw, 6.6rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+      }
+
+      h1 em {
+        position: relative;
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      h1 em::after {
+        position: absolute;
+        right: 1%;
+        bottom: 0.05em;
+        left: 1%;
+        z-index: -1;
+        height: 0.15em;
+        border-radius: 999px;
+        background: var(--accent);
+        content: "";
+        transform: rotate(-1.5deg);
+      }
+
+      .message {
+        max-width: 540px;
+        margin: 27px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.6vw, 1.13rem);
+        line-height: 1.75;
+      }
+
+      .actions {
+        display: flex;
+        margin-top: 35px;
+        flex-wrap: wrap;
+        gap: 13px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 50px;
+        padding: 0 23px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid var(--green);
+        border-radius: 999px;
+        font-size: 0.91rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button:focus-visible,
+      .brand:focus-visible {
+        outline: 3px solid rgba(242, 169, 59, 0.48);
+        outline-offset: 4px;
+      }
+
+      .button-primary {
+        color: var(--cream);
+        background: var(--green);
+        box-shadow: 0 10px 25px rgba(36, 79, 58, 0.2);
+      }
+
+      .button-primary:hover {
+        box-shadow: 0 14px 30px rgba(36, 79, 58, 0.27);
+      }
+
+      .button-secondary {
+        background: transparent;
+      }
+
+      .button-secondary:hover {
+        background: rgba(255, 253, 248, 0.72);
+      }
+
+      .arrow {
+        font-size: 1.2em;
+        line-height: 1;
+      }
+
+      .visual {
+        position: relative;
+        display: grid;
+        min-height: 430px;
+        place-items: center;
+      }
+
+      .visual-ring {
+        position: absolute;
+        width: min(100%, 430px);
+        aspect-ratio: 1;
+        border: 1px dashed rgba(36, 79, 58, 0.28);
+        border-radius: 50%;
+        animation: spin 28s linear infinite;
+      }
+
+      .visual-ring::before,
+      .visual-ring::after {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        content: "";
+      }
+
+      .visual-ring::before {
+        top: 37px;
+        left: 55px;
+        background: var(--accent);
+        box-shadow: 0 0 0 8px rgba(242, 169, 59, 0.16);
+      }
+
+      .visual-ring::after {
+        right: 7px;
+        bottom: 137px;
+        background: var(--green);
+        box-shadow: 0 0 0 8px rgba(36, 79, 58, 0.11);
+      }
+
+      .error-number {
+        position: relative;
+        z-index: 1;
+        color: var(--green);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(8rem, 16vw, 12rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.09em;
+        text-shadow: 10px 12px 0 rgba(242, 169, 59, 0.19);
+      }
+
+      .error-number span {
+        display: inline-block;
+        color: var(--accent);
+        transform: translateY(0.09em) rotate(7deg);
+        text-shadow: none;
+      }
+
+      .floating-card {
+        position: absolute;
+        right: 1%;
+        bottom: 9%;
+        z-index: 2;
+        width: 178px;
+        padding: 17px 18px;
+        border: 1px solid rgba(23, 33, 27, 0.1);
+        border-radius: 14px;
+        background: rgba(255, 253, 248, 0.9);
+        box-shadow: 0 18px 45px rgba(23, 33, 27, 0.12);
+        backdrop-filter: blur(8px);
+        transform: rotate(-4deg);
+      }
+
+      .floating-card-lines {
+        display: grid;
+        gap: 7px;
+      }
+
+      .floating-card-lines i {
+        display: block;
+        height: 5px;
+        border-radius: 999px;
+        background: #d9ddd8;
+      }
+
+      .floating-card-lines i:first-child {
+        width: 48%;
+        background: var(--accent);
+      }
+
+      .floating-card-lines i:last-child {
+        width: 72%;
+      }
+
+      .floating-card small {
+        display: block;
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .site-footer {
+        width: min(1160px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 19px 0 24px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.78rem;
+        text-align: center;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 820px) {
+        .error-shell {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 54px 0 58px;
+          text-align: center;
+        }
+
+        .eyebrow,
+        .actions {
+          justify-content: center;
+        }
+
+        .message {
+          margin-right: auto;
+          margin-left: auto;
+        }
+
+        .visual {
+          min-height: 310px;
+          grid-row: 1;
+        }
+
+        .visual-ring {
+          width: 310px;
+        }
+
+        .floating-card {
+          right: calc(50% - 180px);
+          bottom: 3%;
+          width: 150px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .site-header,
+        .error-shell,
+        .site-footer {
+          width: min(100% - 32px, 1160px);
+        }
+
+        .header-label {
+          display: none;
+        }
+
+        .site-header {
+          padding-top: 20px;
+        }
+
+        .error-shell {
+          padding-top: 34px;
+        }
+
+        .visual {
+          min-height: 250px;
+        }
+
+        .visual-ring {
+          width: 245px;
+        }
+
+        .floating-card {
+          right: 0;
+          bottom: -1%;
+          width: 132px;
+        }
+
+        h1 {
+          font-size: clamp(3.1rem, 15vw, 4.2rem);
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .visual-ring {
+          animation: none;
+        }
+
+        .button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-page">
+      <header class="site-header">
+        <a class="brand" href="{% url 'home' %}" aria-label="My Blogs home">
+          <span class="brand-mark" aria-hidden="true">MB</span>
+          <span>My Blogs</span>
+        </a>
+        <span class="header-label">Lost between the lines</span>
+      </header>
+
+      <main class="error-shell">
+        <section class="error-content" aria-labelledby="error-title">
+          <p class="eyebrow">Error 404</p>
+          <h1 id="error-title">This story got <em>lost.</em></h1>
+          <p class="message">
+            The page you’re looking for may have been moved, renamed, or never
+            made it to print. Let’s get you back to something worth reading.
+          </p>
+
+          <div class="actions">
+            <a class="button button-primary" href="{% url 'home' %}">
+              Back to homepage <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="button button-secondary" href="javascript:history.back()">
+              <span class="arrow" aria-hidden="true">←</span> Previous page
+            </a>
+          </div>
+        </section>
+
+        <div class="visual" aria-hidden="true">
+          <div class="visual-ring"></div>
+          <div class="error-number">4<span>0</span>4</div>
+          <div class="floating-card">
+            <div class="floating-card-lines">
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <small>Article missing</small>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        © {% now "Y" %} My Blogs · Keep exploring, keep reading.
+      </footer>
+    </div>
+  </body>
+</html>
