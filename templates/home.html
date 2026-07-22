@@ -10,7 +10,7 @@
           <h1 class="display-4 font-italic">{{ post.title }}</h1>
           <p class="lead my-3">{{ post.short_description }}</p>
           <p class="lead mb-0">
-            <a href="#" class="text-white font-weight-bold"
+            <a href="{% url 'blog_detail' post.slug %}" class="text-white font-weight-bold"
               >Continue reading...</a
             >
           </p>
