@@ -20,3 +20,16 @@ def posts_by_category(request, category_id):
     }
     
     return render(request, 'posts_by_category.html',context)
+
+
+def blog_detail(request, slug):
+    try:
+        blog = Blog.objects.get(slug=slug, status='Published')
+    except Blog.DoesNotExist:
+        return render(request, '404.html', status=404)  # Return 404 page if blog does not exist
+
+    context = {
+        'blog': blog
+    }
+
+    return render(request, 'blog_detail.html', context)
