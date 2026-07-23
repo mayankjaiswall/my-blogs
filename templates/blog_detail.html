@@ -1,20 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container-fluid">
+  <main role="main" class="blog-detail-wrap">
     <div class="row">
-      <div class="col-md-12">
-        <h1>{{ blog.title }}</h1>
-        <p class="lead">{{ blog.subtitle }}</p>
-        <p>{{ blog.short_description }}</p>
-        <p class="text-muted">By {{ blog.author }} | {{ blog.created_at|date:"F j, Y" }}</p>
+      <article class="col-lg-8 blog-detail-main">
+        <h1 class="blog-detail-title">{{ blog.title }}</h1>
+        <p class="blog-detail-meta">
+          Posted on {{ blog.created_at|date:"F j, Y, g:i a" }} by {{ blog.author }}
+        </p>
+
+        <a class="badge badge-warning blog-detail-category" href="{% url 'posts_by_category' blog.category.id %}">
+          {{ blog.category.category_name }}
+        </a>
+
         {% if blog.featured_image %}
-          <img src="{{ blog.featured_image.url }}" class="img-fluid mb-4" alt="{{ blog.title }}">
+          <figure class="blog-detail-image-frame">
+            <img src="{{ blog.featured_image.url }}" class="blog-detail-image" alt="{{ blog.title }}">
+          </figure>
         {% endif %}
-        <div class="blog-content">
+
+        {% if blog.short_description %}
+          <p class="blog-detail-summary">{{ blog.short_description }}</p>
+        {% endif %}
+
+        <div class="blog-detail-content">
           {{ blog.blog_body|safe }}
         </div>
-      </div>
+      </article>
+
+      <aside class="col-lg-4 blog-detail-sidebar">
+        <section class="sidebar-box sidebar-search">
+          <h4 class="sidebar-box-title">Search</h4>
+          <form class="sidebar-search-form" method="get" action="/">
+            <input class="form-control" type="search" name="q" placeholder="Enter search term..." aria-label="Search">
+            <button class="btn btn-primary" type="submit">Go!</button>
+          </form>
+        </section>
+
+        <section class="sidebar-box">
+          <h3 class="sidebar-heading">Categories</h3>
+          <ol class="list-unstyled sidebar-links">
+            {% for cat in categories %}
+              <li><a href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
+            {% endfor %}
+          </ol>
+        </section>
+
+        <section class="sidebar-box">
+          <h3 class="sidebar-heading">Follow Us</h3>
+          <ol class="list-unstyled sidebar-links">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ol>
+        </section>
+      </aside>
     </div>
-  </div>
+  </main>
 {% endblock content %}
