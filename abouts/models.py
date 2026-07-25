@@ -8,5 +8,8 @@ class About(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+            verbose_name_plural = 'About'
+    
     def __str__(self):
         return self.about_title
