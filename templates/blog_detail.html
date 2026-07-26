@@ -29,14 +29,6 @@
       </article>
 
       <aside class="col-lg-4 blog-detail-sidebar">
-        <section class="sidebar-box sidebar-search">
-          <h4 class="sidebar-box-title">Search</h4>
-          <form class="sidebar-search-form" method="get" action="/">
-            <input class="form-control" type="search" name="q" placeholder="Enter search term..." aria-label="Search">
-            <button class="btn btn-primary" type="submit">Go!</button>
-          </form>
-        </section>
-
         <section class="sidebar-box">
           <h3 class="sidebar-heading">Categories</h3>
           <ol class="list-unstyled sidebar-links">
@@ -47,11 +39,14 @@
         </section>
 
         <section class="sidebar-box">
+          {% if social_platforms %}
           <h3 class="sidebar-heading">Follow Us</h3>
           <ol class="list-unstyled sidebar-links">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            {% for platform in social_platforms %}
+            <li><a href="{{ platform.platform_url }}" target="_blank">{{ platform.platform_name }}</a></li>
+            {% endfor %}
           </ol>
+          {% endif %}
         </section>
       </aside>
     </div>
