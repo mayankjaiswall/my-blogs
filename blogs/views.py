@@ -33,3 +33,13 @@ def blog_detail(request, slug):
     }
 
     return render(request, 'blog_detail.html', context)
+
+
+def search(request):
+    
+    keyword = request.GET.get('keyword')
+    blogs = Blog.objects.filter(title_icontains=keyword)
+    context = {
+        'blogs' : blogs,
+    }
+    return render(request, 'search_results.html', context)
