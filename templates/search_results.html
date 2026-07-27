@@ -1,1 +1,58 @@
 {% extends 'base.html' %}
+
+{% block content %}
+  <main role="main" class="search-results-wrap">
+    <div class="search-results-header">
+      <h1 class="search-results-title">Search Results</h1>
+      {% if keyword %}
+        <p class="search-results-meta">
+          {{ blogs|length }} result{{ blogs|length|pluralize }} found for <strong>"{{ keyword }}"</strong>
+        </p>
+      {% else %}
+        <p class="search-results-meta">Type a keyword above to search published blogs.</p>
+      {% endif %}
+    </div>
+
+    {% if keyword and blogs %}
+      <div class="row search-results-list">
+        {% for post in blogs %}
+          <div class="col-md-6">
+            <article class="search-result-card">
+              {% if post.featured_image %}
+                <a href="{% url 'blog_detail' post.slug %}" class="search-result-image-frame">
+                  <img src="{{ post.featured_image.url }}" class="search-result-image" alt="{{ post.title }}">
+                </a>
+              {% endif %}
+
+              <div class="search-result-body">
+                <a class="badge badge-warning search-result-category" href="{% url 'posts_by_category' post.category.id %}">
+                  {{ post.category.category_name }}
+                </a>
+                <h2 class="search-result-heading">
+                  <a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a>
+                </h2>
+                <p class="search-result-meta">
+                  {{ post.created_at|timesince }} ago | {{ post.author }}
+                </p>
+                <p class="search-result-description">
+                  {{ post.short_description|truncatewords:28 }}
+                </p>
+                <a class="search-result-link" href="{% url 'blog_detail' post.slug %}">Continue reading...</a>
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+    {% elif keyword %}
+      <section class="search-empty-state">
+        <h2>No blogs found</h2>
+        <p>Try another keyword, category name, or phrase from the article.</p>
+      </section>
+    {% else %}
+      <section class="search-empty-state">
+        <h2>Start your search</h2>
+        <p>Use the search box in the header to find articles by title, category, or content.</p>
+      </section>
+    {% endif %}
+  </main>
+{% endblock content %}
