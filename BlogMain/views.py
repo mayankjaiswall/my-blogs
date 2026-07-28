@@ -1,5 +1,6 @@
 from django.shortcuts import render   
 
+from .forms import RegistrationForm
 
 from abouts.models import About
 from blogs.models import Blog, Category
@@ -20,3 +21,12 @@ def home(request):
     }
 
     return render(request, 'home.html', context)
+
+
+def register(request):
+    form = RegistrationForm()
+    context = {
+        'forms' : form,
+    }
+        
+    return render(request, 'register.html')
