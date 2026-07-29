@@ -1,4 +1,5 @@
-from django.shortcuts import render   
+from django.contrib import messages
+from django.shortcuts import redirect, render   
 
 from .forms import RegistrationForm
 
@@ -24,9 +25,17 @@ def home(request):
 
 
 def register(request):
-    form = RegistrationForm()
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been created. You can now log in.')
+            return redirect('home')
+    else:
+        form = RegistrationForm()
+
     context = {
-        'forms' : form,
+        'form': form,
     }
         
-    return render(request, 'register.html')
+    return render(request, 'register.html', context)
