@@ -316,6 +316,206 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
+ * Registration
+ */
+.register-page {
+  margin: 0 -15px;
+  padding: 3.5rem 15px 5rem;
+  background: linear-gradient(135deg, #eef7f6 0%, #f8fbff 48%, #fff7e1 100%);
+}
+
+.register-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, 440px) minmax(320px, 420px);
+  gap: 2.25rem;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(50, 115, 153, .16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .76);
+  box-shadow: 0 24px 70px rgba(32, 32, 32, .11);
+}
+
+.register-intro {
+  position: relative;
+  z-index: 1;
+  min-height: 520px;
+  padding: 2.25rem;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #12364b 0%, #327399 72%, #40a48f 100%);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16);
+}
+
+.register-eyebrow {
+  display: inline-block;
+  margin-bottom: .9rem;
+  padding: .45rem .7rem;
+  border: 1px solid rgba(255, 255, 255, .26);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  color: #ffe8a6;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.register-intro h1 {
+  margin-bottom: 1rem;
+  color: #fff;
+  font-size: 2.75rem;
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.register-intro p {
+  max-width: 380px;
+  margin-bottom: 2.25rem;
+  color: rgba(255, 255, 255, .86);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.register-highlights {
+  display: grid;
+  gap: .9rem;
+  margin-top: 3.25rem;
+}
+
+.register-highlight {
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: .9rem;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .1);
+  backdrop-filter: blur(8px);
+}
+
+.register-highlight-icon {
+  display: inline-flex;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffc107;
+  color: #12364b;
+  font-size: .95rem;
+  font-weight: 700;
+}
+
+.register-highlight strong {
+  display: block;
+  margin-bottom: .2rem;
+  color: #fff;
+}
+
+.register-highlight small {
+  display: block;
+  color: rgba(255, 255, 255, .78);
+  line-height: 1.5;
+}
+
+.register-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem 1.9rem;
+  border: 1px solid rgba(18, 54, 75, .1);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(18, 54, 75, .13);
+}
+
+.register-card-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #ececec;
+}
+
+.register-card-header h2 {
+  margin-bottom: .35rem;
+  color: #202020;
+  font-size: 1.85rem;
+  font-weight: 900;
+}
+
+.register-card-header p {
+  margin-bottom: 0;
+  color: #727272;
+}
+
+.register-card label {
+  margin-bottom: .4rem;
+  color: #20313f;
+  font-weight: 700;
+  font-size: .92rem;
+}
+
+.register-card .form-control {
+  min-height: 44px;
+  border-color: #d7e1e7;
+  border-radius: 6px;
+  background: #f9fbfc;
+}
+
+.register-card .form-control:focus {
+  border-color: #327399;
+  box-shadow: 0 0 0 .2rem rgba(50, 115, 153, .16);
+}
+
+.register-card .form-text,
+.register-card .invalid-feedback {
+  color: #637282;
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.register-card ul {
+  margin-top: .45rem;
+  margin-bottom: .9rem;
+  padding-left: 1.15rem;
+  color: #637282;
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.register-submit {
+  min-height: 48px;
+  margin-top: .75rem;
+  border: 0;
+  border-radius: 6px;
+  background: #327399;
+  box-shadow: 0 10px 24px rgba(50, 115, 153, .28);
+  font-weight: 700;
+}
+
+.register-submit:hover,
+.register-submit:focus {
+  background: #245b7a;
+}
+
+.register-login-note {
+  margin: 1.25rem 0 0;
+  color: #727272;
+  text-align: center;
+}
+
+.register-login-note a {
+  color: #327399;
+  font-weight: 700;
+}
+
+/*
  * Footer
  */
 .blog-footer {
@@ -338,6 +538,30 @@ h1, h2, h3, h4, h5, h6 {
 
   .blog-detail-sidebar {
     margin-top: 2.5rem;
+  }
+
+  .register-shell {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 620px;
+  }
+
+  .register-intro,
+  .register-intro p,
+  .register-highlights {
+    max-width: none;
+  }
+
+  .register-intro {
+    min-height: auto;
+  }
+
+  .register-highlights {
+    margin-top: 1.75rem;
+  }
+
+  .register-card {
+    max-width: none;
   }
 }
 
@@ -370,5 +594,21 @@ h1, h2, h3, h4, h5, h6 {
 
   .sidebar-search-form .btn {
     margin-top: .65rem;
+  }
+
+  .register-page {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .register-shell {
+    padding: 1rem;
+  }
+
+  .register-intro h1 {
+    font-size: 2.2rem;
+  }
+
+  .register-card {
+    padding: 1.25rem;
   }
 }
