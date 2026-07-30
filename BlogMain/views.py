@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.shortcuts import redirect, render   
 
 from .forms import LoginForm, RegistrationForm
@@ -63,3 +64,10 @@ def login(request):
         'next': request.GET.get('next', ''),
     }
     return render(request, 'login.html', context)
+
+
+def logout(request):
+    if request.method == 'POST':
+        auth_logout(request)
+        messages.success(request, 'You have been logged out.')
+    return redirect('home')
