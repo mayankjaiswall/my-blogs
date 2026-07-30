@@ -1,7 +1,8 @@
 from django.contrib import messages
+from django.contrib.auth import login as auth_login
 from django.shortcuts import redirect, render   
 
-from .forms import RegistrationForm
+from .forms import LoginForm, RegistrationForm
 
 from abouts.models import About
 from blogs.models import Blog, Category
@@ -30,7 +31,9 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Your account has been created. You can now log in.')
-            return redirect('home')
+            return redirect('login')
+        else:
+            print(form.errors)
     else:
         form = RegistrationForm()
 
@@ -39,3 +42,24 @@ def register(request):
     }
         
     return render(request, 'register.html', context)
+
+
+def login(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            messages.success(request, 'You are now logged in.')
+            next_url = request.POST.get('next') or request.GET.get('next')
+            return redirect(next_url or 'home')
+    else:
+        form = LoginForm(request)
+
+    context = {
+        'form': form,
+        'next': request.GET.get('next', ''),
+    }
+    return render(request, 'login.html', context)
