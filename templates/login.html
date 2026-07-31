@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main class="auth-page">
+  <section class="auth-shell">
+    <div class="auth-intro">
+      <span class="auth-eyebrow">Welcome back</span>
+      <h1>Login to My Blogs</h1>
+      <p>
+        Use the username or email address you registered with to continue
+        reading, writing, and managing your blog account.
+      </p>
+
+      <div class="auth-highlights">
+        <div class="auth-highlight">
+          <span class="auth-highlight-icon">&check;</span>
+          <div>
+            <strong>Registered users only</strong>
+            <small>Your account details are checked securely.</small>
+          </div>
+        </div>
+        <div class="auth-highlight">
+          <span class="auth-highlight-icon">&check;</span>
+          <div>
+            <strong>Fast access</strong>
+            <small>Sign in once and continue from the home page.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <h2>Sign in</h2>
+        <p>Enter your account details below.</p>
+      </div>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} mb-4" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if next %}
+          <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
+        {{ form|crispy }}
+
+        <button type="submit" class="btn btn-primary btn-block auth-submit">
+          Login
+        </button>
+      </form>
+
+      <p class="auth-register-note">
+        Do not have an account?
+        <a href="{% url 'register' %}">Create one</a>
+      </p>
+    </div>
+  </section>
+</main>
+{% endblock content %}
+
