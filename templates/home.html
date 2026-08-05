@@ -38,44 +38,59 @@
         {% endfor %}
       </div>
 
-      <h3 class="mb-4 font-italic" style="color: #333;">Recent Articles</h3>
-      <main role="main" class="container p-0">
+      <main role="main" class="home-content">
+        <div class="section-heading">
+          <span>Latest from the blog</span>
+          <h2>Recent Articles</h2>
+        </div>
+
         <div class="row">
-          <div class="col-md-8 blog-main">
+          <div class="col-lg-8 blog-main recent-articles">
             {% for post in posts %}
-            <div class="col-md-6">
-            <div class="card border-0">
-              <div class="card-body">
-                <h3><a href="{% url 'blog_detail' post.slug %}" class="text-dark"> {{ post.title }}</a></h3>
-                <small class="mb-1 text-muted">{{ post.created_at| timesince }} | {{ post.author }}</small>
-                <p class="card-text">
-                  {{ post.short_description |truncatewords:10}}
+            <article class="recent-article-card">
+              {% if post.featured_image %}
+                <a class="recent-article-image" href="{% url 'blog_detail' post.slug %}">
+                  <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                </a>
+              {% endif %}
+              <div class="recent-article-body">
+                <a class="recent-article-category" href="{% url 'posts_by_category' post.category.id %}">
+                  {{ post.category.category_name }}
+                </a>
+                <h3>
+                  <a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a>
+                </h3>
+                <p class="recent-article-meta">
+                  {{ post.created_at|timesince }} ago | {{ post.author }}
                 </p>
+                <p class="recent-article-excerpt">
+                  {{ post.short_description|truncatewords:22 }}
+                </p>
+                <a class="recent-article-link" href="{% url 'blog_detail' post.slug %}">Continue reading...</a>
               </div>
-            </div>
-            </div>
+            </article>
             {% endfor %}
             <!-- /.blog-post -->
           </div>
           <!-- /.blog-main -->
 
-          <aside class="col-md-4 blog-sidebar">
-            <div class="p-3 mb-3 bg-light rounded">
-              <h4 class="font-italic">{{ about.about_title }}</h4>
+          <aside class="col-lg-4 blog-sidebar home-sidebar">
+            <section class="home-sidebar-panel about-panel">
+              <h4>{{ about.about_title }}</h4>
               <p class="mb-0">
                 {{ about.about_description }}
               </p>
-            </div>
+            </section>
 
             {% if social_platforms %}
-            <div class="p-3">
-              <h4 class="font-italic">Follow Us</h4>
-              <ol class="list-unstyled">
+            <section class="home-sidebar-panel">
+              <h4>Follow Us</h4>
+              <ol class="list-unstyled sidebar-social-links">
                 {% for platform in social_platforms %}
-                <li><a href="{{ platform.platform_url }}" target="_blank">{{ platform.platform_name }}</a></li>
+                <li><a href="{{ platform.platform_url }}" target="_blank" rel="noopener">{{ platform.platform_name }}</a></li>
                 {% endfor %}
               </ol>
-            </div>
+            </section>
             {% endif %}
           </aside>
           <!-- /.blog-sidebar -->
@@ -83,5 +98,4 @@
         <!-- /.row -->
       </main>
       <!-- /.container -->
-    </div>
 {% endblock content %}
