@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900"
       rel="stylesheet"
     />
-    <link href="{% static 'css/blog.css' %}?v=4" rel="stylesheet" />
+    <link href="{% static 'css/blog.css' %}?v=5" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
@@ -55,11 +55,46 @@
 <!--Main content of the Base Html-->
 {% block content %}
 {% endblock content %}
+    </div>
 
 <!--Main content of the Base Html-->
 <!-- Footer of the Base Html -->
-     <footer class="blog-footer">
-      <p>Django blog built with by <a href="#">Mayank Jaiswal;</a></p>
+    <footer class="blog-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <section class="footer-brand">
+            <a class="footer-logo" href="/">My Blogs</a>
+            <p>
+              Fresh stories, practical articles, and clear updates across the
+              topics readers care about every day.
+            </p>
+          </section>
+
+          <section class="footer-section">
+            <h2>Explore</h2>
+            <ul class="footer-links">
+              {% for cat in categories %}
+                <li><a href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
+              {% endfor %}
+            </ul>
+          </section>
+
+          {% if social_platforms %}
+          <section class="footer-section">
+            <h2>Follow</h2>
+            <ul class="footer-links">
+              {% for platform in social_platforms %}
+                <li><a href="{{ platform.platform_url }}" target="_blank" rel="noopener">{{ platform.platform_name }}</a></li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% endif %}
+        </div>
+
+        <div class="footer-bottom">
+          <p>Django blog built by <a href="#">Mayank Jaiswal</a></p>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
