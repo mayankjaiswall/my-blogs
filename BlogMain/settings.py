@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'blogs',
     'abouts',
     'socialPlatform',
+    'dashboards',
 ]
 
 MIDDLEWARE = [
