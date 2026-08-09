@@ -1,34 +1,61 @@
-{% extends "base.html" %} {% block content %}
-<div class="row">
-  <!-- Sidebar navigation for dashboard -->
-  <div class="col-md-3">
-    <div class="nav flex-column nav-pills bg-light" aria-orientation="vertical">
-      <a class="nav-link text-dark bg-light" href="{% url 'dashboard' %}">Dashboard</a>
-      <a class="nav-link text-dark bg-light" href="#">Create Post</a>
-      <a class="nav-link text-dark bg-light" href="#">Manage Posts</a>
-      <a class="nav-link text-dark bg-light" href="#">Profile</a>
+{% extends "base.html" %}
+
+{% block content %}
+<main class="dashboard-page">
+  <div class="dashboard-titlebar">
+    <div>
+      <span>Admin area</span>
+      <h1>Dashboard</h1>
+      <p>Quick overview of your blog content and categories.</p>
     </div>
   </div>
-  <!-- Main content area for dashboard -->
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col">
-        <div class="card border-default mb-3">
-          <div class="card-header text-center text-uppercase">All Categories</div>
-          <div class="card-body text-dark">
-            <h5 class="card-title text-center">{{ categories_count }}</h5>
+
+  <div class="row dashboard-layout">
+    <div class="col-md-3">
+      <nav class="dashboard-nav" aria-label="Dashboard navigation">
+        <a class="active" href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="#">Create Post</a>
+        <a href="#">Manage Posts</a>
+        <a href="#">Profile</a>
+      </nav>
+    </div>
+
+    <div class="col-md-9">
+      <div class="dashboard-content">
+        <div class="dashboard-section-heading">
+          <h2>Overview</h2>
+          <p>Your current blog statistics.</p>
+        </div>
+
+        <div class="row dashboard-stat-row">
+          <div class="col-sm-6">
+            <article class="dashboard-stat-card">
+              <span>All Categories</span>
+              <strong>{{ categories_count }}</strong>
+              <p>Total categories created for blog posts.</p>
+            </article>
+          </div>
+          <div class="col-sm-6">
+            <article class="dashboard-stat-card">
+              <span>All Blogs</span>
+              <strong>{{ blogs_count }}</strong>
+              <p>Total blog posts available in the system.</p>
+            </article>
           </div>
         </div>
-      </div>
-        <div class="col">
-        <div class="card border-default mb-3">
-          <div class="card-header text-center text-uppercase">All Blogs</div>
-          <div class="card-body text-dark">
-            <h5 class="card-title text-center">{{ blogs_count }}</h5>
+
+        <section class="dashboard-actions-panel">
+          <div>
+            <h2>Quick Actions</h2>
+            <p>Use these shortcuts to manage your content faster.</p>
           </div>
-        </div>
+          <div class="dashboard-action-links">
+            <a class="btn btn-warning" href="#">Create Post</a>
+            <a class="btn btn-outline-secondary" href="#">Manage Posts</a>
+          </div>
+        </section>
       </div>
     </div>
   </div>
-</div>
+</main>
 {% endblock %}
