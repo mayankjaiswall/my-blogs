@@ -14,3 +14,12 @@ def dashboard(request):
     }
     
     return render(request, 'dashboards/dashboard.html', context)
+
+
+def categories(request):
+    categories = Category.objects.all()
+    context = {
+        'categories': categories,
+    }
+    
+    return render(request, 'dashboards/categories.html', context)
