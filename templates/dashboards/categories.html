@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="dashboard-page">
+  <div class="dashboard-titlebar">
+    <div>
+      <span>Admin area</span>
+      <h1>Categories</h1>
+      <p>View and manage the categories used for your blog posts.</p>
+    </div>
+  </div>
+
+  <div class="row dashboard-layout">
+    <div class="col-md-3">
+      {% include "dashboards/sidebar.html" %}
+    </div>
+
+    <div class="col-md-9">
+      <div class="dashboard-content">
+        <div class="dashboard-section-heading">
+          <h2>All Categories</h2>
+          <p>{{ categories|length }} categories available.</p>
+        </div>
+
+        {% if categories %}
+          <ol class="dashboard-category-list">
+            {% for category in categories %}
+              <li>
+                <span>{{ category.category_name }}</span>
+              </li>
+            {% endfor %}
+          </ol>
+        {% else %}
+          <p class="dashboard-empty-message">No categories have been created yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

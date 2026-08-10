@@ -12,12 +12,7 @@
 
   <div class="row dashboard-layout">
     <div class="col-md-3">
-      <nav class="dashboard-nav" aria-label="Dashboard navigation">
-        <a class="active" href="{% url 'dashboard' %}">Dashboard</a>
-        <a href="#">Create Post</a>
-        <a href="#">Manage Posts</a>
-        <a href="#">Profile</a>
-      </nav>
+      {% include "dashboards/sidebar.html" %}
     </div>
 
     <div class="col-md-9">
