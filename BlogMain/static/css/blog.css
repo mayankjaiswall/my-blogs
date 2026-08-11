@@ -475,6 +475,45 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 14px 34px rgba(20, 42, 55, .06);
 }
 
+.dashboard-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dashboard-table {
+  min-width: 720px;
+  margin-bottom: 0;
+  color: #405260;
+}
+
+.dashboard-table thead th {
+  border-top: 0;
+  border-bottom: 1px solid #d8dee3;
+  color: #202020;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  padding: .95rem .75rem;
+  vertical-align: middle;
+}
+
+.dashboard-table tbody th {
+  width: 48px;
+  color: #405260;
+  font-weight: 400;
+}
+
+.dashboard-table tbody tr:nth-child(even) {
+  background: #f3f5f6;
+}
+
+.dashboard-table tbody tr:hover {
+  background: #edf6f8;
+}
+
 .dashboard-category-list {
   display: grid;
   gap: .65rem;
