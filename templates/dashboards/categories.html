@@ -4,7 +4,6 @@
 <main class="dashboard-page">
   <div class="dashboard-titlebar">
     <div>
-      <span>Admin area</span>
       <h1>Categories</h1>
       <p>View and manage the categories used for your blog posts.</p>
     </div>
@@ -23,13 +22,38 @@
         </div>
 
         {% if categories %}
-          <ol class="dashboard-category-list">
-            {% for category in categories %}
-              <li>
-                <span>{{ category.category_name }}</span>
-              </li>
-            {% endfor %}
-          </ol>
+          <div class="dashboard-table-wrap">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Category Name</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Updated At</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for category in categories %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ category.category_name }}</td>
+                    <td>{{ category.created_at | date:"M d, Y" }}</td>
+                    <td>{{ category.updated_at | date:"M d, Y" }}</td>
+                    <td>
+                     <a href="#" class="edit-category-link" data-category-id="{{ category.id }}" data-category-name="{{ category.category_name }}">
+                       <i class="fa fa-edit"></i>
+                     </a>
+                     &nbsp;
+                     <a href="#" onclick="return confirm('Are you sure you want to delete this category?')">
+                       <i class="fa fa-trash"></i>
+                     </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         {% else %}
           <p class="dashboard-empty-message">No categories have been created yet.</p>
         {% endif %}
