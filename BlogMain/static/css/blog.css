@@ -406,6 +406,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dashboard-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   margin-bottom: 1.5rem;
   padding: 1.6rem 1.75rem;
   border: 1px solid #e4e8eb;
@@ -436,6 +440,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
   color: #637282;
   font-size: 1rem;
+}
+
+.dashboard-titlebar .btn {
+  flex: 0 0 auto;
+  border-radius: 6px;
+  font-weight: 700;
 }
 
 .dashboard-layout {
@@ -512,6 +522,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .dashboard-table tbody tr:hover {
   background: #edf6f8;
+}
+
+.dashboard-row-actions {
+  display: flex;
+  gap: .45rem;
+  align-items: center;
+}
+
+.dashboard-row-actions form {
+  margin: 0;
+}
+
+.dashboard-row-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 6px;
 }
 
 .dashboard-category-list {
@@ -610,6 +640,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dashboard-action-links .btn {
+  min-width: 120px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.dashboard-form {
+  max-width: 520px;
+}
+
+.dashboard-form-actions {
+  display: flex;
+  gap: .65rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.dashboard-form-actions .btn {
   min-width: 120px;
   border-radius: 6px;
   font-weight: 700;
@@ -1178,6 +1225,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .dashboard-titlebar {
+    align-items: flex-start;
+    flex-direction: column;
     padding: 1.25rem;
   }
 
