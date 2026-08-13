@@ -1,7 +1,7 @@
 {% with current_url=request.resolver_match.url_name %}
 <nav class="dashboard-nav" aria-label="Dashboard navigation">
   <a class="{% if current_url == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
-  <a class="{% if current_url == 'categories' %}active{% endif %}" href="{% url 'categories' %}">Categories</a>
+  <a class="{% if current_url == 'categories' or current_url == 'add_category' or current_url == 'edit_category' %}active{% endif %}" href="{% url 'categories' %}">Categories</a>
   <a href="#">Create Post</a>
   <a href="#">Manage Posts</a>
   <a href="#">Profile</a>
