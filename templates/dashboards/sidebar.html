@@ -2,8 +2,8 @@
 <nav class="dashboard-nav" aria-label="Dashboard navigation">
   <a class="{% if current_url == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
   <a class="{% if current_url == 'categories' or current_url == 'add_category' or current_url == 'edit_category' %}active{% endif %}" href="{% url 'categories' %}">Categories</a>
-  <a href="#">Create Post</a>
-  <a href="#">Manage Posts</a>
+  <a class="{% if current_url == 'create_post' %}active{% endif %}" href="{% url 'create_post' %}">Create Post</a>
+  <a class="{% if current_url == 'manage_posts' or current_url == 'edit_post' %}active{% endif %}" href="{% url 'manage_posts' %}">Manage Posts</a>
   <a href="#">Profile</a>
 </nav>
 {% endwith %}

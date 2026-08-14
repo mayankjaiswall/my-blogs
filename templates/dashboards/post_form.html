@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main class="dashboard-page">
+  <div class="dashboard-titlebar">
+    <div>
+      <h1>{{ title }}</h1>
+      <p>Fill in the details below to publish your blog post.</p>
+    </div>
+  </div>
+
+  <div class="row dashboard-layout">
+    <div class="col-md-3">
+      {% include "dashboards/sidebar.html" %}
+    </div>
+
+    <div class="col-md-9">
+      <div class="dashboard-content">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+
+        <div class="dashboard-section-heading">
+          <h2>{{ title }}</h2>
+          <p>Provide the title, category, and content for this post.</p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="dashboard-form">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="dashboard-form-actions">
+            <button class="btn btn-primary" type="submit">{{ submit_label }}</button>
+            <a class="btn btn-outline-secondary" href="{% url 'manage_posts' %}">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
