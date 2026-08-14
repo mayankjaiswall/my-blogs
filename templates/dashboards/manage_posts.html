@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="dashboard-page">
+  <div class="dashboard-titlebar">
+    <div>
+      <h1>Manage Posts</h1>
+      <p>View and manage your blog posts.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'create_post' %}">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      Create Post
+    </a>
+  </div>
+
+  <div class="row dashboard-layout">
+    <div class="col-md-3">
+      {% include "dashboards/sidebar.html" %}
+    </div>
+
+    <div class="col-md-9">
+      <div class="dashboard-content">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+
+        <div class="dashboard-section-heading">
+          <h2>All Posts</h2>
+          <p>{{ posts|length }} posts available.</p>
+        </div>
+
+        {% if posts %}
+          <div class="dashboard-table-wrap">
+            <table class="table dashboard-table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Updated At</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for post in posts %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.category.category_name }}</td>
+                    <td>{{ post.status }}</td>
+                    <td>{{ post.created_at | date:"M d, Y" }}</td>
+                    <td>{{ post.updated_at | date:"M d, Y" }}</td>
+                    <td>
+                      <div class="dashboard-row-actions">
+                        <a class="btn btn-sm btn-outline-primary" href="{% url 'edit_post' post.id %}" aria-label="Edit {{ post.title }}">
+                          <i class="fa fa-edit" aria-hidden="true"></i>
+                        </a>
+                        <form method="post" action="{% url 'delete_post' post.id %}" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                          {% csrf_token %}
+                          <button class="btn btn-sm btn-outline-danger" type="submit" aria-label="Delete {{ post.title }}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="dashboard-empty-message">No posts have been created yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
