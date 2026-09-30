@@ -452,7 +452,7 @@
     </style>
   </head>
   <body>
-    <div class="error-page">
+    {% comment %} <div class="error-page">
       <header class="site-header">
         <a class="brand" href="{% url 'home' %}" aria-label="My Blogs home">
           <span class="brand-mark" aria-hidden="true">MB</span>
@@ -495,6 +495,6 @@
       <footer class="site-footer">
         © {% now "Y" %} My Blogs · Keep exploring, keep reading.
       </footer>
-    </div>
+    </div> {% endcomment %}
   </body>
 </html>
