@@ -26,10 +26,10 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('category/', include('blogs.urls')),
     path('blogs/<slug:slug>/',Blogviews.blog_detail, name='blog_detail'),
-    # path('blogs/search/', Blogviews.search, name='search'),   
-    # path('register/', views.register, name="register"),
-    # path('login/', views.login, name='login'),
-    # path('logout/', views.logout, name='logout'),
+    path('blogs/search/', Blogviews.search, name='search'),   
+    path('register/', views.register, name="register"),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
     
     #Dashboard
     path('dashboard/', include('dashboards.urls'))
