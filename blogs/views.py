@@ -40,14 +40,14 @@ def search(request):
     keyword = request.GET.get('keyword', '').strip()
     blogs = Blog.objects.none()
 
-    if keyword:
-        blogs = Blog.objects.filter(
-            Q(title__icontains=keyword) |
-            Q(short_description__icontains=keyword) |
-            Q(blog_body__icontains=keyword) |
-            Q(category__category_name__icontains=keyword),
-            status='Published'
-        ).select_related('category', 'author').order_by('-created_at')
+    # if keyword:
+    #     blogs = Blog.objects.filter(
+    #         Q(title__icontains=keyword) |
+    #         Q(short_description__icontains=keyword) |
+    #         Q(blog_body__icontains=keyword) |
+    #         Q(category__category_name__icontains=keyword),
+    #         status='Published'
+    #     ).select_related('category', 'author').order_by('-created_at')
 
     context = {
         'blogs': blogs,
