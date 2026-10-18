@@ -22,9 +22,9 @@ from django.conf.urls.static import static
 from blogs import views as Blogviews
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('category/', include('blogs.urls')),
+    # path('admin/', admin.site.urls),
+    # path('', views.home, name='home'),
+    # path('category/', include('blogs.urls')),
     path('blogs/<slug:slug>/',Blogviews.blog_detail, name='blog_detail'),
     path('blogs/search/', Blogviews.search, name='search'),   
     path('register/', views.register, name="register"),
