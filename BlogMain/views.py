@@ -45,25 +45,25 @@ def register(request):
     return render(request, 'register.html', context)
 
 
-def login(request):
-    if request.user.is_authenticated:
-        return redirect('home')
+# def login(request):
+#     if request.user.is_authenticated:
+#         return redirect('home')
 
-    if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            auth_login(request, form.get_user())
-            messages.success(request, 'You are now logged in.')
-            next_url = request.POST.get('next') or request.GET.get('next')
-            return redirect(next_url or 'home')
-    else:
-        form = LoginForm(request)
+#     if request.method == 'POST':
+#         form = LoginForm(request, data=request.POST)
+#         if form.is_valid():
+#             auth_login(request, form.get_user())
+#             messages.success(request, 'You are now logged in.')
+#             next_url = request.POST.get('next') or request.GET.get('next')
+#             return redirect(next_url or 'home')
+#     else:
+#         form = LoginForm(request)
 
-    context = {
-        'form': form,
-        'next': request.GET.get('next', ''),
-    }
-    return render(request, 'login.html', context)
+#     context = {
+#         'form': form,
+#         'next': request.GET.get('next', ''),
+#     }
+#     return render(request, 'login.html', context)
 
 
 def logout(request):
